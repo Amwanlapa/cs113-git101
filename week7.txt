@@ -1,0 +1,76 @@
+week7 Pointers เเละ Dynamic Memory Allocation
+
+1.Pointers and Addresses
+ เป็นตัวแปรที่เก็บค่าของที่อยู่ของข้อมูลของตัวแปร 
+ การใช้ pointers จะทำให้เราสามารถเข้าถึงข้อมูลได้โดยตรงโดยใช้ที่อยู่ของหน่วยความจำ
+2.Pointer Operators
+ex. ampersand (&)
+ int myVariable = 8;
+ printf("%d", &myVariable); // 1367 
+
+ เลข 1367 ออกทางหน้าจอนั่นหมายความว่าตัวแปร myVariable ถูกเก็บอยู่ที่ตำแหน่ง 1367 
+ ในหน่วยความจำ ดังนั้นเราสามารถใช้ค่าที่อยู่นี้ในการถึงค่าของตัวแปร myVariable ได้โดยตรง 
+ โดยปกติเราจะใช้ %x เพื่อแสดงผลค่าที่อยู่ในเลขฐาน 16
+ex. star * หน้าตัวแปรพอยน์เตอร์เพื่อเข้าถึงข้อมูลในที่อยู่ของพอยน์เตอร์
+
+int myVariable = 8;
+int *myPointer = &myVariable; // ประกาศตัวแปรpointers
+printf("%d", *myPointer); // เข้าถึงข้อมูลของตัวแปรpointers
+
+3.Declaring pointers
+ex.
+#include <stdio.h>
+int main()
+{
+    int number = 10;
+    float money = 34.8;
+
+    int *p1 = &number;
+    float *p2;
+    p2 = &money;
+
+    printf("p1 address = %x\n", p1);
+    printf("p1 value = %d\n", *p1);
+    printf("p2 address = %x\n", p2);
+    printf("p2 value = %f\n", *p2);
+    return 0;
+}
+output
+p1 address = 28ff04
+p1 value = 10
+p2 address = 28ff00
+p2 value = 34.799999
+
+4.การใช้ pointers กับ Array
+ex.
+#include <stdio.h>
+int main()
+{
+    int number[5] = {10, 20, 30, 40, 50};
+    int *myPointer = &number;
+    printf("first -> %d\n", *myPointer);
+    myPointer++;
+    printf("go next -> %d\n", *myPointer);
+    myPointer += 3;
+    printf("go next 3 -> %d\n", *myPointer);
+    myPointer--;
+    printf("go back -> %d\n", *myPointer);
+    return 0;
+}
+
+output
+first -> 10
+go next -> 20
+go next 3 -> 50
+go back -> 40
+5.ฟังก์ชันscanf()
+  คล้ายกับฟังก์ชัน printf() เเต่ทำงานลักษณะตรงกันข้าม
+  ex.
+  int a;
+  char c;
+  scanf("%d %c",&a, &c);
+6.segmentation fault
+  หากพยายามเข้าถึงหน่วยความจำที่เราไม่ได้จองไว้หรือหน่วยความจำที่
+  นอกเหนือจากตัวเเปรที่เราประกาศไว้ มีโอกาสที่จะถูกระบบปฏิบัติการจะหยุดการ
+  ทำงานของโปรเเกรมเรา จะขึ้นว่า Segmentation fault (core dumped)
+  
