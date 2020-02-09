@@ -1,0 +1,119 @@
+week3 Control Flow
+
+1.Statements and Blocks
+  ต้องปิดท้ายด้วย ; จะเปลี่ยนจาก expression -> statement
+  {} ใช้รวมส่วนของ declarations เเละ statements เข้าด้วยกันเป็นblock
+  null statement จะไม่มีส่วนของ expression จะมีเเค่ ;
+2. lf-Else
+   if(expression) 
+     statement1
+   else
+     statement2
+3.Else-lf
+ex. 
+#include <stdio.h>
+int main()
+{
+    int score;
+    scanf ("%d", &score);
+
+    if (score < 50)
+        printf("Your grade is F");
+    else if (score < 60)
+        printf("Your grade is D");
+    else if (score < 70)
+        printf("Your grade is C");
+    else if (score < 80)
+        printf("Your grade is B");
+    else
+        printf("Congratulation! You got grade A");
+
+    return 0;
+}
+4.Switch
+  ใช้ในการตรวจสอบเงื่อนไขในลักษณะ expression นั้น match กับค่าคงที่อันไหนจนกว่าจะเจอ break
+#include <stdio.h>
+int main()
+{
+    int number = 5;
+
+    switch (number)
+    {
+    case 1:
+        printf("n is 1");
+        break;
+    case 2:
+        printf("n is 2");
+        break;
+    case 3:
+        printf("n is 3");
+        break;
+    default:
+        printf("Unknown");
+    }
+
+    return 0;
+}
+    ในการทำงานจากตัวแปรด้านบน เป็นการส่งตัวแปร number โดยจะนำไปเปรียบเทียบกับแต่ละ case 
+ถ้าเงื่อนไขตรง โปรแกรมจะทำงานทันที จนกว่าจะสิ้นสุดบล็อคของคำสั่ง switch ดังนั้นเราจำเป็นต้องใช้คำสั่ง break 
+เพื่อให้จบการทำงาน สำหรับคำสั่ง default จะเป็นการทำหลังจากที่ number ไม่ตรงกับเงื่อนไขใดๆ ก่อนหน้า
+5.Loops-While เเละ For
+ex.1 while
+#include <stdio.h>
+int main()
+{
+    int n = 1;
+
+    while (n <= 10)
+    {
+        printf("%d, ", n);
+        n++;
+    }
+    return 0;
+}
+ex.2 For
+#include <stdio.h>
+int main()
+{
+    int i;
+    for (i = 1; i <= 10; i++)
+    {
+        printf("%d, ", i);
+        if (i == 3)
+            break;
+    }
+    return 0;
+}
+6.Loops-Do-While
+    จะทำงานก่อนอย่างน้อยหนึ่งรอบแล้วจะตรวจสอบเงื่อนไข เงื่อนไขจะอยู่ด้านล่างของลูป
+และถ้าเงื่อนไขไม่เป็นจริงจะสิ้นสุดการทำงาน จะทำงานจากล่างไปบน
+
+#include <stdio.h>
+int main()
+{
+    int n = 1;
+
+    do
+    {
+        printf("Enter number: ");
+        scanf ("%d", &n);
+        printf("You have entered %d\n", n);
+    }
+    while (n != 0);
+
+    printf("The program is terminated");
+    return 0;
+}
+7.Break เเละ Continue
+  break คือทำให้โปรเเกรมหลุดออกจากลูป
+  continue คือจะบังคับลูปให้เกิดการวนซ้ำขึ้นมาใหม่
+
+
+
+
+
+  
+
+
+
+
