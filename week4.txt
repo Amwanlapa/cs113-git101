@@ -1,0 +1,51 @@
+week 4 Functions and Program Structure
+
+1.Function Definition(การนิยามฟังก์ชัน)
+#include <stdio.h>
+int myFactorial(int);  #function header
+
+int main()
+{
+    int myNumber = 5;  #บรรทัด9-11คือ function body
+    printf("%d face is %d", myNumber, myFactorial(myNumber));
+    return 0;
+}
+
+int myFactorial(int n)
+{
+    int result = 1, i;
+    for (i = 1; i <= n; i++)
+    {
+        result *= i;
+    }
+    return result;
+}
+output = 5 face is 120
+ฟังก์ชันอยู่ด้านล่าง แต่เราเรียกใช้ฟังก์ชันก่อนจะถูกสร้างในฟังก์ชัน main 
+ดังนั้นมันจึงจำเป็นต้องถูกประกาศไว้ก่อนด้านบนของโปรแกรม
+2.Function Prototypes
+  เหมือน Function header ใช้บอกว่ามีฟังก์ชันที่ต้องเรียกใช้ก่อนการนิยามฟังก์ชันกับ
+  copiler return-value-type function-name(parameter-list);
+3.Standard Library Functions and Math Library Functions
+scanf	stdio.h
+printf	stdio.h	
+getch	conio.h	
+sqrt	math.h	
+floor	math.h
+ex. sqrt(25); //5
+    floor(1.34); //1
+4.Return Values
+  หากใช้void จะไม่มีการส่งค่ากลับเเต่ถ้ามีการส่งค่ากลับจะใช้ return
+5.Recursion
+เป็นฟังก์ชันที่สามารถเรียกใช้ตัวเองได้ โดยจะมีการสำเนาข้อมูลขึ้นมาไม่เกี่ยวกับครั้งก่อนหน้า
+ถ้าเรียกซ้ำเยอะอาจจะทำให้เกิดการ overflow
+6.Function Call เเละ Stack Frames
+เมื่อตัวเเปร local ทำงานจะสร้างstack frame เพื่อเก็บข้อมูลของ parameter โดย 1 stack frame 
+ต่อการใช้งาน 1 ครั้งเเละ return address จะถูกทำงานหลังจากสิ้นสุดการทำงาน ส่วน stack frame
+ก็จะถูกทำลาย
+ส่วนประกอบของ stack frame (หรือเรียกอีกอย่างว่า activation record)
+    -return address
+    -ตัวเเปร locals
+    
+
+
