@@ -1,0 +1,79 @@
+week8 Linked Lists
+
+1. Linked List คืออะไร
+  เป็นโครงสร้างข้อมูลที่ถูกออกเเบบมาใช้เก็บข้อมูล โดยที่ข้อมูลเเต่ละตัวจะเชื่อมโยงต่อกันเป็นสาย
+  เพื่อให้ผู้ใช้สามารถเข้าถึงข้อมูลเเต่ละตัวได้ ตราบที่สายข้อมูลยังไม่ขาดออกจากกัน
+2.เกริ่นนำเกี่ยวกับ Structure
+  
+  struct person
+{
+    char name[20];
+    int age;
+    float money;
+} student, teacher;
+
+ในตัวอย่าง เราได้สร้างโครงสร้างข้อมูลชื่อว่า person โดยมีสมาชิก 3 ตัว โดยเป็นตัวแปรที่เก็บข้อมูลประเภทต่างๆ 
+ที่เป็น name, age และ money สำหรับสมาชิกของโครงสร้างข้อมูล จะไม่สามารถกำหนดค่าเริ่มต้นเหมือนการประกาศตัวแปรได้ 
+และเราได้สร้างตัวแปรออบเจ็คของโครงสร้างข้อมูลนี้คือ student และ teacher 
+อย่างไรก็ตามเราสามารถสร้างตัวแปรออบเจ็คนี้ได้ภายหลังเมื่อตอนโปรแกรมรัน โดยใช้คำสั่ง
+
+struct person student, teacher;
+
+หลังจากที่เราได้ประกาศโครงสร้างข้อมูลของเราเรียบร้อยแล้ว 
+ต่อไปเราจะกำหนดค่าให้กับโครงสร้างข้อมูลของเรา
+
+#include <stdio.h>
+struct person
+{
+    char name[20];
+    int age;
+    float money;
+};
+
+int main()
+{
+    struct person student, teacher;
+
+    strcpy(student.name, "Marcus");
+    student.age = 18;
+    student.money = 10.25;
+
+    strcpy(teacher.name, "James");
+    teacher.age = 20;
+    teacher.money = 49.5;
+
+    printf("%s has age %d and money %.2f usd\n", student.name, student.age, student.money);
+    printf("%s has age %d and money %.2f usd\n", teacher.name, teacher.age, teacher.money);
+
+    return 0;
+}
+ในตัวอย่างเราได้ประกาศตัวแปรออบเจ็คของโครงสร้างข้อมูล person มาสองตัวคือ student และ teacher โดยใช้คำสั่ง
+struct person student, teacher;
+
+หลังจากที่ประกาศแล้วเราสามารถเข้าถึงข้อมูลโดยการใช้ ชื่อของออบเจ็คที่สร้างขึ้น ตามด้วยเครื่องหมายจุด (.) และชื่อสมาชิก 
+เช่น student.name เป็นการเข้าถึงตัวแปร name ของออบเจค student สำหรับการกำหนดค่าให้กับตัวแปร char array 
+เราจะใช้ฟังก์ชัน strcpy และในตอนท้ายเราแสดงข้อมูลเหล่านั้นออกทางหน้าจอ ซึ่งจะได้outputดังนี้
+
+Marcus has age 18 and money 10.25 usd
+James has age 20 and money 49.50 usd
+
+-การใช้งาน type def
+
+typedef data_type identify;
+typedef เป็นคำสั่งที่ใช้ในการประกาศ data_type เป็นประเภทของข้อมูลเดิมที่มีอยู่แล้ว และ identify 
+เป็นชื่อของชนิดข้อมูลใหม่ของเรา มาดูตัวอย่าง
+
+typedef int myType;
+myType a, b;
+a = 5;
+b = 4;
+ในตัวอย่าง เราได้สร้างประเภทข้อมูลใหม่ขึ้นมาชื่อว่า myType โดยมีประเภทข้อมูลเป็น int ในตอนนี้เราสามารถใช้ myType 
+ในการสร้างตัวแปรหรือทำอย่างอื่นได้ เหมือนที่ใช้ประกาศตัวแปร a และ b ในตัวอย่าง นอกจากนี้มันยังสามารถใช้ได้กับ data structure ด้วย 
+เช่น
+typedef struct person myStruct;
+myStruct student; // มีค่าเหมือน struct person student;
+3. Doubly Linked List
+  ลักษณะของ Linked List ที่เห็นผ่านมา เรียกว่า singly Linked List โดยพิจารณาได้จากการ
+  ที่เเต่ละโหนดที่อยู่ติดกันเชื่อมต่อถึงกันผ่านลิงก์เพียงลิงก์เดียว
+  นอกจาก singly Linked List เรายังสามารถสร้างโครงสร้างข้อมูลที่เรียกว่า Doubly Linked List 
+  โดยที่เเต่ละโหนดที่อยู่ติดกันเชื่อมต่อกันด้วยลิงก์ 2 ลิงก์
