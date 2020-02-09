@@ -1,0 +1,99 @@
+week 5 Functions and Program Structure 
+
+1.Scope Rules
+-local Variables
+ ตัวเเปรที่ถูกประกาศไว้ภายใน block สามารถใช้งานได้เพียงภายในฟังก์ชันที่ถูกประกาศไว้
+-Global Variables
+ เป็นตัวเเปรที่ถูกประกาศไว้นอกฟังก์ชัน สามารถเข้าถึงได้จากฟังก์ชันต่างๆ หากตัวเเปรใน local 
+ ชื่อซ้ำกับใน global ตัวเเปรใน local จะไม่ส่งผลกระทบกับตัวเเปร global
+-Storage Classes
+ มี4ลักษณะ ที่สามารถกำหนด Storage Class เพื่อช่วยกำหนดช่วงชีวิตในการเก็บข้อมูลของตัวเเปรนั้นในmemory
+ 1) auto
+ 2) register
+ 3) extern
+ 4) static
+ เเบ่งย่อยออกเป็น 2 storage duration
+ 1) automatic storage duration (auto+register)
+ ใช้กำหนดตัวเเปรในmemory เมื่อโปรเเกรมเข้าทำงานในblockเมื่อทำงานเสร็จเเล้วจะหายไป
+ 2) static storage duration (extern+static)
+ ใช้กำหนดตัวเเปรในmemory เมื่อเริ่มเเละสิ้นสุดการทำงานของโปรเเกรมตัวเเปรจะยังไม่หายไป
+ -Dynamic Storage Duration
+ เป็นพื้นที่เก็บข้อมูลที่ถูกจัดสรรพื้นที่ขึ้นมาได้ตามความต้องการของโปรเเกรมขณะที่โปรเเกรมกำลังทำงานอยู่
+2.Separate Compilation (การคอมไพล์เเยกส่วน)
+  วิธีการคอมไพล์ 
+  $ gcc -c main.c #คำสั่งนี้จะสร้าง main.o
+  $ gcc -c func.c #คำสั่งนี้จะสร้าง func.o
+  $ gcc main.o func.o -o main.exe #คำสั่งนี้จะลิงก์ main.o เเละ func.o
+3.การใช้ make (ใช้สร้างกฎ+library)
+ -การสร้าง Static library
+  $ gcc -c func.c #ชื่อไฟล์.c
+  ar cr libfunc.a func.o #ชื่อไฟล์.a เเละ ชื่อไฟล์.o
+ -การสร้าง Shared(Dynamic) Library
+  Window= gcc -shared -o libfunc.dll -Wl,--out-implib,libfunc.dll.a*.o
+  MacOSX= gcc -shared -o libfunc.dylib *.o
+  Linux= gcc -shared -o libfunc.so *.o
+4.Random Number Generator
+  rand()เป็นฟังก์ชันใน C standard Library ที่ใช้ในการสร้างเลขสุ่มที่เป็นจำนวนเต็มที่อยู่
+  ระหว่าง0 เเละ RAND_MAX(จะถูกกำหนดไว้ใน stdlib.h)
+  จำเป็นต้องเรียก srand() 1ครั้ง เพื่อกำหนดค่า seed ให้กับ Random Number Generator ก่อนเรียกใช้ rand() ต่อไป
+
+lab113-week5
+#include <stdio.h>
+int main()
+{
+    int x = 100;
+    // int b = 0144;
+    // int c = 0x64;
+    //เลขฐานสองต้องเปลี่ยนเอา กำหนดเเบบฐาน8กับฐาน16ไม่ได้
+    printf("x = %d\n",x);
+    printf("reference of x %lu\n", &x); //& ใช้ดึง address ของตัวเเปรออกมา
+    printf("reference of x %p\n" ,&x);
+    char input[180];
+    //gets(input);  //เวลาส่งด้วยaddress จะใช้ pointer เก็บค่า
+    printf("reference of input %lu\n", input);
+    printf("reference of &input[0] %p\n", &input[0];
+    //ใช้ = ไม่ต้อง passing ไปเพื่อใช้ input
+    int number[] = {1, 2, 3, 4, 5};
+    printf("index 2 = %d\n",number[2]);
+    printf("index 2 = %d\n",*(number+2)); //* คือ d-differensing ใช้ดึงค่า  index
+    //เปลี่ยนค่าของ address ไม่ได้เปลี่ยนได้เเค่ค่าที่อยู่ใน address
+
+
+    int *ptr = &x;
+    int *arrPtr = number;
+    char input[100];
+    gets(input);
+    for (int *ptr=number; ptr <= &number[3]; ptr++)
+    {
+        printf("[%d] = %d\n", ptr ,*ptr);
+    }
+    char input[100];
+    int count = 0;
+    char c;
+    while ((c=getchar()) != '\n')
+    {
+        input[count] = c;
+        count++;
+
+    }
+    printf("input[] = %s\n", input);
+    for (char *cPtr = input; *cPtr !='\0'; cPtr++)
+    {
+        printf("%c\n", *cPtr);
+    }
+
+
+    //การใช้scanf
+    int a;
+    char c;
+    char s[300];
+    scanf("%d %c-%s", &a, &c, s);
+    printf("%d-%c-%s", a, s);
+
+
+
+}
+
+
+    
+    
